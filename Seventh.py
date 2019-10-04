@@ -5,7 +5,6 @@ class Grafo:
 		self.numero=None
 		self.peso=[0 for i in range(numero)]
 		self.flag=[False for i in range(numero)]
-		caminos=""
 def Lector(linea):
 	lagar=0#Inicio
 	lagar2=0#entre
@@ -128,17 +127,16 @@ def Optimo(inicio,fin,base,vertices):
 	peso=0
 	r=-1
 	k=inicio-1
-	#print(base[0].flag[5])
 	despeje(base,vertices)
 	print(base[4].flag[2])
 	head.append(inicio-1)
-
 	j=1
 	while rutas_visitadas(base,vertices):
 		if fin_de_cola(base,vertices,k) and k!=fin-1:
 			if j==0:
 				j=1
 				k=head[j-1]
+				break
 			else:
 				peso=peso-base[k].peso[i]
 				print("j= ",end='')
@@ -157,11 +155,11 @@ def Optimo(inicio,fin,base,vertices):
 					llegados[r]=llegados[r]+'->'+chr(head[p]+48)
 				head=array('i',[inicio-1])
 				pesos.append(peso)
-				k=inicio
-				peso=0
+				k=inicio-1
 				j=1
 				head.append(inicio-1)
-				break
+				i=0
+				peso=0
 			if base[k].next[i]!=None and base[k].flag[i]!=True:
 				peso=peso+base[k].peso[i]
 				j+=1
@@ -171,9 +169,7 @@ def Optimo(inicio,fin,base,vertices):
 				base[i].flag[k]=True
 				k=i
 				if k==inicio-1:
-					head=array('i',[inicio-1])
-					k=inicio-1
-					j=0
+					print("pep")
 				i=0
 	print(rutas_visitadas(base,vertices))
 	print(pesos)
