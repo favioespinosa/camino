@@ -89,7 +89,6 @@ def minimo_pesos(pesos):
 		if mini>pesos[i]:
 			mini=pesos[i]
 			inice=i
-	print("sk")
 	return inice
 def rutas(base,vertices):
 	for i in range(vertices):
@@ -128,7 +127,6 @@ def Optimo(inicio,fin,base,vertices):
 	r=-1
 	k=inicio-1
 	despeje(base,vertices)
-	print(base[4].flag[2])
 	head.append(inicio-1)
 	j=1
 	while rutas_visitadas(base,vertices):
@@ -139,13 +137,9 @@ def Optimo(inicio,fin,base,vertices):
 				break
 			else:
 				peso=peso-base[k].peso[i]
-				print("j= ",end='')
-				print(j)
 				k=head[j-1]
-				print(head)
 				if len(head)-1!=0:
 					head.pop(len(head)-1)
-				print(head)
 				j-=1
 		for i in range(0,vertices):
 			if k==fin-1:
@@ -164,7 +158,6 @@ def Optimo(inicio,fin,base,vertices):
 				peso=peso+base[k].peso[i]
 				j+=1
 				head.append(base[i].numero)
-				print(head)
 				base[k].flag[i]=True
 				base[i].flag[k]=True
 				k=i
